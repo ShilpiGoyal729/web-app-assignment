@@ -47,7 +47,7 @@ Instead of WSL2/Ubuntu installation, macOS Terminal was used as it natively supp
 docker --version
 docker info
 docker run hello-world
-
+---
 Build Docker Image:
 docker build -t web-image:v1 .
 
