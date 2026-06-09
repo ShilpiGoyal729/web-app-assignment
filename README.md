@@ -62,46 +62,53 @@ docker run -p 8080:80 web-image:v1
 
 
 ## Docker Compose Setup
-#### Command
+### Command
+```bash
 docker compose up -d
-Services
+```
+**Services**
 Web Application Container
 MySQL Database Container
 Architecture Flow
 
 Browser → Web Container → Docker Network → MySQL Container
 
-🌐 Nginx Configuration
+## Nginx Configuration
 
 Nginx works as a reverse proxy that forwards requests to backend containers.
 
-Client → Nginx → Web Application Container
+**Client → Nginx → Web Application Container**
 
-🔐 SSL Configuration
+## SSL Configuration
 Self-signed SSL certificate used
 HTTP redirected to HTTPS
 Browser warning expected
-💾 Backup & Restore Process
-Backup Commands
+## Backup & Restore Process
+**Backup Commands**
+```bash
 docker save -o image.tar web-image:v1
 docker exec mysql-container mysqldump -u root -p appdb > db.sql
-Restore Commands
+```
+
+**Restore Commands**
+```bash
 docker load -i image.tar
 cat db.sql | docker exec -i mysql-container mysql -u root -p appdb
-🔄 CI/CD Setup (GitHub Actions)
-Flow
+```
+## CI/CD Setup (GitHub Actions)
+#### Flow
 
-GitHub → Actions → Build → Run → Validate
+**GitHub → Actions → Build → Run → Validate**
 
-Workflow File
+**Workflow File**
 
 .github/workflows/docker-ci.yml
 
-Trigger
+**Trigger**
 
 Runs automatically on every push to main branch
 
-🏗️ Architecture Diagram
+# Architecture Diagram
 
 Developer
 ↓
@@ -117,6 +124,6 @@ Nginx Reverse Proxy
 ↓
 HTTPS Browser Access
 
-🚀 Final Outcome
+# Final Outcome
 
 This project demonstrates a complete DevOps lifecycle from development to deployment, automation, monitoring, and troubleshooting using Docker, Nginx, SSL, and GitHub Actions.
