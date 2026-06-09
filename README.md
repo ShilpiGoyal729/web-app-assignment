@@ -8,9 +8,7 @@ The assignment was completed on macOS. Since WSL2 is only available on Windows, 
 
 This project demonstrates a complete DevOps workflow covering development, containerization, deployment, automation, and troubleshooting using industry-standard tools.
 
-It includes building and deploying a web application using Docker, managing multi-container setups with Docker Compose, configuring Nginx as a reverse proxy, enabling HTTPS with SSL certificates, and automating workflows using a GitHub Actions CI/CD pipeline.
-
-All tasks were performed on macOS using its Unix-based terminal, which supports Linux-like commands, allowing smooth execution of all DevOps operations without requiring a separate Linux/WSL environment.
+It includes building and deploying a web application using Docker, managing multi-container setups using Docker Compose, configuring Nginx as a reverse proxy, enabling HTTPS with SSL certificates, and automating workflows using a GitHub Actions CI/CD pipeline.
 
 ---
 
@@ -22,25 +20,21 @@ All tasks were performed on macOS using its Unix-based terminal, which supports 
 ## Tools Used
 - Docker Desktop
 - Git & GitHub
-- Nginx (container-based setup)
-- OpenSSL (for SSL certificates)
+- Nginx
+- OpenSSL
 
 ## Linux Environment Note
-Instead of WSL2/Ubuntu installation, macOS Terminal was used as it natively supports Linux commands and provides an equivalent environment for DevOps practice.
+macOS Terminal was used instead of WSL2 since it already supports Linux commands.
 
 ---
 
 # 🐳 Docker Setup
 
-## Docker Installation Steps (macOS)
-
-- Download Docker Desktop from the official Docker website  
-- Open the `.dmg` file  
-- Drag Docker into Applications  
-- Launch Docker Desktop  
-- Accept license agreement and complete setup  
-- Wait for Docker Engine to start  
-- Verify installation using CLI  
+## Docker Installation Steps
+- Download Docker Desktop
+- Install and launch Docker
+- Start Docker Engine
+- Verify installation using CLI
 
 ---
 
@@ -50,17 +44,71 @@ Instead of WSL2/Ubuntu installation, macOS Terminal was used as it natively supp
 docker --version
 docker info
 docker run hello-world
+Build Docker Image
+docker build -t web-image:v1 .
+Run Docker Container
+docker run -p 8080:80 web-image:v1
+Key Concepts
+Image → Blueprint of application
+Container → Running instance of image
+Volume → Persistent storage
+Network → Communication between containers
+🧩 Docker Compose Setup
+Command
+docker compose up -d
+Services
+Web Application Container
+MySQL Database Container
+Architecture Flow
 
+Browser → Web Container → Docker Network → MySQL Container
 
+🌐 Nginx Configuration
 
+Nginx works as a reverse proxy that forwards requests to backend containers.
 
+Client → Nginx → Web Application Container
 
+🔐 SSL Configuration
+Self-signed SSL certificate used
+HTTP redirected to HTTPS
+Browser warning expected
+💾 Backup & Restore Process
+Backup Commands
+docker save -o image.tar web-image:v1
+docker exec mysql-container mysqldump -u root -p appdb > db.sql
+Restore Commands
+docker load -i image.tar
+cat db.sql | docker exec -i mysql-container mysql -u root -p appdb
+🔄 CI/CD Setup (GitHub Actions)
+Flow
 
+GitHub → Actions → Build → Run → Validate
 
+Workflow File
 
+.github/workflows/docker-ci.yml
 
+Trigger
 
+Runs automatically on every push to main branch
 
+🏗️ Architecture Diagram
 
+Developer
+↓
+GitHub Repository
+↓
+GitHub Actions CI/CD Pipeline
+↓
+Docker Image Build
+↓
+Containers (Web + DB)
+↓
+Nginx Reverse Proxy
+↓
+HTTPS Browser Access
 
-mmmm
+🚀 Final Outcome
+
+This project demonstrates a complete DevOps lifecycle from development to deployment, automation, monitoring, and troubleshooting using Docker, Nginx, SSL, and GitHub Actions.
