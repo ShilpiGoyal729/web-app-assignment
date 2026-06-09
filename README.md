@@ -44,17 +44,25 @@ macOS Terminal was used instead of WSL2 since it already supports Linux commands
 docker --version
 docker info
 docker run hello-world
-Build Docker Image
+```
+### Build Docker Image
+```bash
 docker build -t web-image:v1 .
-Run Docker Container
+```
+### Run Docker Container
+```bash
 docker run -p 8080:80 web-image:v1
-Key Concepts
-Image → Blueprint of application
-Container → Running instance of image
-Volume → Persistent storage
-Network → Communication between containers
-🧩 Docker Compose Setup
-Command
+```
+
+#### Key Concepts
+**Image**  → Blueprint of application
+**Container** → Running instance of image
+**Volume** → Persistent storage
+**Network** → Communication between containers
+
+
+## Docker Compose Setup
+#### Command
 docker compose up -d
 Services
 Web Application Container
