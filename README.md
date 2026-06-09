@@ -110,19 +110,6 @@ Runs automatically on every push to main branch
 
 # Architecture Diagram
 
-Developer
-↓
-GitHub Repository
-↓
-GitHub Actions CI/CD Pipeline
-↓
-Docker Image Build
-↓
-Containers (Web + DB)
-↓
-Nginx Reverse Proxy
-↓
-HTTPS Browser Access
 
 # Final Outcome
 
