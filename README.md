@@ -30,70 +30,62 @@ Instead of WSL2/Ubuntu installation, macOS Terminal was used as it natively supp
 
 ---
 
-# 🐳 Docker Setup
+#  Docker Setup
 
 ## Docker Installation Steps (macOS)
 
-- Download Docker Desktop from the official Docker website
-- Open the `.dmg` file
-- Drag Docker into Applications
-- Launch Docker Desktop
-- Accept license agreement and complete setup
-- Wait for Docker Engine to start
-- Verify installation using CLI
+- Download Docker Desktop from the official Docker website  
+- Open the `.dmg` file  
+- Drag Docker into Applications  
+- Launch Docker Desktop  
+- Accept license agreement and complete setup  
+- Wait for Docker Engine to start  
+- Verify installation using CLI  
+
+---
 
 ## Installation Verification
+
 ```bash
 docker --version
 docker info
 docker run hello-world
----
-Build Docker Image:
+Build Docker Image
 docker build -t web-image:v1 .
-
-Run Docker Container:
+Run Docker Container
 docker run -p 8080:80 web-image:v1
-
-Key Concepts:
+Key Concepts
 Image → A read-only blueprint or template used to create containers. It contains the application code, dependencies, and configuration.
 Container → A running instance of a Docker image that executes the application in an isolated environment.
 Volume → A mechanism used to persist data outside the container so that data is not lost when a container stops or is removed.
 Network → A communication layer that allows multiple containers to connect and interact with each other securely.
+ Docker Compose Setup
 
----
+Created docker-compose.yml
 
-#  Docker Compose Setup
-created docker-compose.yml
-
-Command to run Docker compose:
+Command to run Docker Compose:
 docker compose up -d
-
-
 Services:
-- Web Application Container
-- MySQL Database Container
-
+Web Application Container
+MySQL Database Container
 Architecture Flow:
+
 Browser → Web Container → Docker Network → MySQL Container
 
----
-
-# 🌐 Nginx Configuration (Reverse Proxy)
+ Nginx Configuration (Reverse Proxy)
 
 Nginx acts as a reverse proxy that routes incoming requests to backend application containers.
 
 Flow:
+
 Client → Nginx → Web Application Container
 
 Benefits:
-- Security
-- Load balancing
-- Single entry point for applications
-- Scalability
-
----
-
-# 🔐 SSL Configuration (HTTPS)
+Security
+Load balancing
+Single entry point for applications
+Scalability
+ SSL Configuration (HTTPS)
 
 SSL was configured using a self-signed certificate inside Nginx.
 
@@ -102,57 +94,42 @@ HTTP requests are redirected to HTTPS.
 Note:
 Browser shows a warning because self-signed certificates are not issued by trusted Certificate Authorities.
 
----
-
-# 💾 Backup & Restore Process
-
+ Backup & Restore Process
 Backup Commands:
 docker save -o image.tar web-image:v1
 docker exec mysql-container mysqldump -u root -p appdb > db.sql
-
 Restore Commands:
 docker load -i image.tar
 cat db.sql | docker exec -i mysql-container mysql -u root -p appdb
-
----
-
-# 🔄 CI/CD Setup (GitHub Actions)
-
+ CI/CD Setup (GitHub Actions)
 Workflow:
+
 GitHub Push → GitHub Actions → Build Docker Image → Run Container → Validate
 
 Workflow File:
+
 .github/workflows/docker-ci.yml
 
 Trigger:
+
 Automatically runs on every push to main branch
 
----
-
-# 🏗️ Architecture Diagram
+🏗️ Architecture Diagram
 
 Developer
-   |
-   v
+↓
 GitHub Repository
-   |
-   v
+↓
 GitHub Actions CI/CD Pipeline
-   |
-   v
+↓
 Docker Image Build
-   |
-   v
+↓
 Containers (Web Application + Database)
-   |
-   v
+↓
 Nginx Reverse Proxy
-   |
-   v
+↓
 HTTPS Browser Access
 
----
-
-# 🚀 Final Outcome
+🚀 Final Outcome
 
 This project demonstrates a complete DevOps lifecycle from development → containerization → deployment → CI/CD automation → monitoring → troubleshooting using real-world DevOps tools and workflows.
