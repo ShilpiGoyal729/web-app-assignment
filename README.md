@@ -96,21 +96,21 @@ docker load -i image.tar
 cat db.sql | docker exec -i mysql-container mysql -u root -p appdb
 ```
 ## CI/CD Setup (GitHub Actions)
-#### Flow
+### Flow
 
-**GitHub → Actions → Build → Run → Validate**
+GitHub → Actions → Build → Run → Validate
 
-**Workflow File**
+### Workflow File
 
 .github/workflows/docker-ci.yml
 
-**Trigger**
+### Trigger
 
 Runs automatically on every push to main branch
 
-# Architecture Diagram
+## Architecture Diagram
 
 
-# Final Outcome
+## Final Outcome
 
 This project demonstrates a complete DevOps lifecycle from development to deployment, automation, monitoring, and troubleshooting using Docker, Nginx, SSL, and GitHub Actions.
