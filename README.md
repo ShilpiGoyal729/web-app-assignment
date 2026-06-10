@@ -109,7 +109,7 @@ GitHub → Actions → Build → Run → Validate
 Runs automatically on every push to main branch
 
 ## Architecture Diagram
-
+<img width="1122" height="1402" alt="Image" src="https://github.com/user-attachments/assets/c730517f-f6d5-44a1-a577-2888369c46b5" />
 
 ## Final Outcome
 
