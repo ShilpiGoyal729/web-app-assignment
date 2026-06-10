@@ -110,22 +110,24 @@ Runs automatically on every push to main branch
 
 ## Troubleshooting Guide
 
-#### Application Not Accessible
+### Application Not Accessible
+
 **Check running containers:**
   ```bash
   docker ps
   docker logs <container-id>
   ```
-Verify port mappings and container status.
+  Verify port mappings and container status.
 
-#### Container Restarting Continuously
+### Container Restarting Continuously
 
 **Check container logs:**
 ```bash
 docker logs <container-id>
  ```
 Verify application configuration and environment variables.
-#### Nginx 502 Bad Gateway
+
+### Nginx 502 Bad Gateway
 
 **Check Nginx error logs:**
 
@@ -133,7 +135,7 @@ Verify application configuration and environment variables.
 cat /var/log/nginx/error.log
 ```
 Ensure the backend application container is running.
-#### SSL Certificate Issues
+### SSL Certificate Issues
 
 **Verify certificate configuration:**
 
@@ -141,7 +143,8 @@ Ensure the backend application container is running.
 openssl x509 -in server.crt -text
 ```
 Check certificate and key paths in Nginx.
-#### Database Connection Failure
+
+### Database Connection Failure
 
 **Check database container logs:**
 
